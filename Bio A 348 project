@@ -36,6 +36,17 @@ boxplot(type$`Typing WPM`, type$`Texting WPM`,
         names = c("Typing WPM", "Texting WPM"),
         main = "Words Per Minute (5 characters = 1 word)",
         ylab = "WPM")
+        
+par(mfrow=c(1,1))
+plot(type$`Typing WPM` ~ type$`Texting WPM`,
+        pch = 16,
+        col = "turquoise3",
+        xlab = "Texting WPM",
+        ylab = "Typing WPM",
+        main = "Texting vs Typing WPM")
+abline(0,1, 
+        lty = "dashed",
+        col = "gold4")       
 
 
 HLtypemod <- lm(type$`Typing WPM` ~ type$`Hand Length`)
