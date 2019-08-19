@@ -1,0 +1,164 @@
+> summary(HLtypemod)
+
+Call:
+lm(formula = type$`Typing WPM` ~ type$`Hand Length`)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-22.552 -17.294  -4.286  14.244  47.911 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(>|t|)  
+(Intercept)         -72.651     65.409  -1.111   0.2822  
+type$`Hand Length`    7.078      3.657   1.935   0.0697 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 19.84 on 17 degrees of freedom
+Multiple R-squared:  0.1806,	Adjusted R-squared:  0.1324 
+F-statistic: 3.746 on 1 and 17 DF,  p-value: 0.06975
+
+> summary(PWtypemod)
+
+Call:
+lm(formula = type$`Typing WPM` ~ type$`Palm Width`)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-32.94 -13.35  -1.74  12.74  46.80 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)
+(Intercept)        -12.515     57.874  -0.216    0.831
+type$`Palm Width`    8.141      7.097   1.147    0.267
+
+Residual standard error: 21.12 on 17 degrees of freedom
+Multiple R-squared:  0.07184,	Adjusted R-squared:  0.01724 
+F-statistic: 1.316 on 1 and 17 DF,  p-value: 0.2672
+
+> summary(TLtypemod)
+
+Call:
+lm(formula = type$`Typing WPM` ~ type$`Thumb Length`)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-30.844 -11.297  -0.816   8.234  47.495 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)  
+(Intercept)          -39.527     41.833  -0.945   0.3580  
+type$`Thumb Length`   14.569      6.505   2.240   0.0388 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 19.26 on 17 degrees of freedom
+Multiple R-squared:  0.2278,	Adjusted R-squared:  0.1824 
+F-statistic: 5.016 on 1 and 17 DF,  p-value: 0.03878
+
+> summary(TWtypemod)
+
+Call:
+lm(formula = type$`Typing WPM` ~ type$`Thumb Width`)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-38.740 -11.252  -7.856  10.254  49.332 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(>|t|)
+(Intercept)           78.65      50.77   1.549    0.140
+type$`Thumb Width`   -11.51      23.24  -0.495    0.627
+
+Residual standard error: 21.77 on 17 degrees of freedom
+Multiple R-squared:  0.01421,	Adjusted R-squared:  -0.04378 
+F-statistic: 0.2451 on 1 and 17 DF,  p-value: 0.6269
+
+> summary(HLtextmod)
+
+Call:
+lm(formula = type$`Texting WPM` ~ type$`Hand Length`)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-12.308  -7.197  -3.545   3.300  27.770 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(>|t|)  
+(Intercept)         -20.726     35.710  -0.580   0.5693  
+type$`Hand Length`    3.630      1.997   1.818   0.0867 .
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 10.83 on 17 degrees of freedom
+Multiple R-squared:  0.1628,	Adjusted R-squared:  0.1135 
+F-statistic: 3.306 on 1 and 17 DF,  p-value: 0.08671
+
+> summary(PWtextmod)
+
+Call:
+lm(formula = type$`Texting WPM` ~ type$`Palm Width`)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-14.374  -8.063  -2.731   2.763  33.917 
+
+Coefficients:
+                  Estimate Std. Error t value Pr(>|t|)
+(Intercept)        39.4030    32.4272   1.215    0.241
+type$`Palm Width`   0.5709     3.9764   0.144    0.888
+
+Residual standard error: 11.83 on 17 degrees of freedom
+Multiple R-squared:  0.001211,	Adjusted R-squared:  -0.05754 
+F-statistic: 0.02061 on 1 and 17 DF,  p-value: 0.8875
+
+> summary(TLtextmod)
+
+Call:
+lm(formula = type$`Texting WPM` ~ type$`Thumb Length`)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-12.9621  -6.4726   0.3419   2.6650  28.7066 
+
+Coefficients:
+                    Estimate Std. Error t value Pr(>|t|)  
+(Intercept)           -9.643     22.130  -0.436    0.669  
+type$`Thumb Length`    8.395      3.441   2.440    0.026 *
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+Residual standard error: 10.19 on 17 degrees of freedom
+Multiple R-squared:  0.2593,	Adjusted R-squared:  0.2157 
+F-statistic: 5.951 on 1 and 17 DF,  p-value: 0.02596
+
+> summary(TWtextmod)
+
+Call:
+lm(formula = type$`Texting WPM` ~ type$`Thumb Width`)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-15.447  -8.328  -1.529   3.180  33.826 
+
+Coefficients:
+                   Estimate Std. Error t value Pr(>|t|)
+(Intercept)          47.204     27.610   1.710    0.106
+type$`Thumb Width`   -1.455     12.640  -0.115    0.910
+
+Residual standard error: 11.84 on 17 degrees of freedom
+Multiple R-squared:  0.0007785,	Adjusted R-squared:  -0.058 
+F-statistic: 0.01325 on 1 and 17 DF,  p-value: 0.9097
+
+> t.test(type$`Typing WPM`, type$`Texting WPM`, paired = TRUE)
+
+	Paired t-test
+
+data:  type$`Typing WPM` and type$`Texting WPM`
+t = 2.1416, df = 18, p-value = 0.04616
+alternative hypothesis: true difference in means is not equal to 0
+95 percent confidence interval:
+  0.1821116 19.0090637
+sample estimates:
+mean of the differences 
+               9.595588 
