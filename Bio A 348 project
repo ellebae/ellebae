@@ -1,0 +1,128 @@
+# edit directory once downloaded
+# file can be found at:
+## https://docs.google.com/spreadsheets/d/19PTzDy-H5MLY6zDKDuj6aSYSBy0r78ebg5JtAqQ_SFU/edit#gid=1283381069
+
+library(readxl)
+type <- read_excel("C:/Users/Lauren/Downloads/Final dataframe.xlsx")
+
+par(mfrow=c(2,2))
+boxplot(type$`Hand Length`,
+        main = "Hand length",
+        ylab = "(cm)",
+        col = "darkviolet")
+boxplot(type$`Palm Width`,
+        main = "Palm width at widest point",
+        ylab = "(cm)",
+        col = "royalblue")
+boxplot(type$`Thumb Length`,
+        main = "Thumb length",
+        ylab = "(cm)",
+        col = "violetred1")
+boxplot(type$`Thumb Width`,
+        main = "Thumb width at interphalangeal joint",
+        ylab = "(cm)",
+        col = "springgreen3")
+
+par(mfrow=c(1,2))
+boxplot(type$`Typing time`, type$`Texting Time`,
+        at = c(1,2),
+        col = c("yellow", "turquoise1"),
+        names = c("Typing Time", "Texting Time"),
+        main = "Typing time (s)",
+        ylab = "seconds")
+boxplot(type$`Typing WPM`, type$`Texting WPM`,
+        at = c(1,2),
+        col = c("yellow", "turquoise1"),
+        names = c("Typing WPM", "Texting WPM"),
+        main = "Words Per Minute (5 characters = 1 word)",
+        ylab = "seconds")
+
+
+HLtypemod <- lm(type$`Typing WPM` ~ type$`Hand Length`)
+PWtypemod <- lm(type$`Typing WPM` ~ type$`Palm Width`)
+TLtypemod <- lm(type$`Typing WPM` ~ type$`Thumb Length`)
+TWtypemod <- lm(type$`Typing WPM` ~ type$`Thumb Width`)
+
+summary(HLtypemod)
+summary(PWtypemod)
+summary(TLtypemod)
+summary(TWtypemod)
+
+par(mfrow=c(2,2))
+plot(type$`Typing WPM` ~ type$`Hand Length`,
+    pch = 16,
+    col = "darkviolet",
+    main = "Typing WPM vs. Hand Length",
+    xlab = "cm",
+    ylab = "Typing WPM")
+abline(HLtypemod)
+
+plot(type$`Typing WPM` ~ type$`Palm Width`,
+     pch = 16,
+     col = "royalblue",
+     main = "Typing WPM vs. Palm Width",
+     xlab = "cm",
+     ylab = "Typing WPM")
+abline(PWtypemod)
+
+plot(type$`Typing WPM` ~ type$`Thumb Length`,
+     pch = 16,
+     col = "violetred1",
+     main = "Typing WPM vs. Thumb Length",
+     xlab = "cm",
+     ylab = "Typing WPM")
+abline(TLtypemod)
+
+plot(type$`Typing WPM` ~ type$`Thumb Width`,
+     pch = 16,
+     col = "springgreen3",
+     main = "Typing WPM vs. Thumb Width",
+     xlab = "cm",
+     ylab = "Typing WPM")
+abline(TWtypemod)
+
+
+HLtextmod <- lm(type$`Texting WPM` ~ type$`Hand Length`)
+PWtextmod <- lm(type$`Texting WPM` ~ type$`Palm Width`)
+TLtextmod <- lm(type$`Texting WPM` ~ type$`Thumb Length`)
+TWtextmod <- lm(type$`Texting WPM` ~ type$`Thumb Width`)
+
+summary(HLtextmod)
+summary(PWtextmod)
+summary(TLtextmod)
+summary(TWtextmod)
+
+par(mfrow=c(2,2))
+plot(type$`Texting WPM` ~ type$`Hand Length`,
+     pch = 16,
+     col = "darkviolet",
+     main = "Texting WPM vs. Hand Length",
+     xlab = "cm",
+     ylab = "Texting WPM")
+abline(HLtypemod)
+
+plot(type$`Texting WPM` ~ type$`Palm Width`,
+     pch = 16,
+     col = "royalblue",
+     main = "Texting WPM vs. Palm Width",
+     xlab = "cm",
+     ylab = "Texting WPM")
+abline(PWtypemod)
+
+plot(type$`Texting WPM` ~ type$`Thumb Length`,
+     pch = 16,
+     col = "violetred1",
+     main = "Texting WPM vs. Thumb Length",
+     xlab = "cm",
+     ylab = "Texting WPM")
+abline(TLtypemod)
+
+plot(type$`Texting WPM` ~ type$`Thumb Width`,
+     pch = 16,
+     col = "springgreen3",
+     main = "Texting WPM vs. Thumb Width",
+     xlab = "cm",
+     ylab = "Texting WPM")
+abline(TWtypemod)
+
+t.test(type$`Typing WPM`, type$`Texting WPM`, paired = TRUE)
