@@ -3,7 +3,6 @@
 
 library("readxl")
 cortisol <- read_excel("C:/Users/baela/Desktop/BIO A 455/self sample data.xlsx", range = "A1:I13")
-View(self_sample_data)
 
 # vectorizing days
 cort1029 <- cortisol$FinalConcentration_ngmL[seq(1, 3)]
