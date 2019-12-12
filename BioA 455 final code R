@@ -1,0 +1,136 @@
+# modify all file destination locations to include attached excel file named "self sample data". 
+# All datasets pulled will be from "sheet 2"
+
+library("readxl")
+cortisol <- read_excel("C:/Users/baela/Desktop/BIO A 455/self sample data.xlsx", range = "A1:I13")
+View(self_sample_data)
+
+# vectorizing days
+cort1029 <- cortisol$FinalConcentration_ngmL[seq(1, 3)]
+cort1030 <- cortisol$FinalConcentration_ngmL[seq(4, 6)]
+cort1105 <- cortisol$FinalConcentration_ngmL[seq(7, 9)]
+cort1106 <- cortisol$FinalConcentration_ngmL[seq(10, 12)]
+
+# vectorizing time hours
+time1029 <- cortisol$`Time since midnight`[seq(1, 3)]
+time1030 <- cortisol$`Time since midnight`[seq(4, 6)]
+time1105 <- cortisol$`Time since midnight`[seq(7, 9)]
+time1106 <- cortisol$`Time since midnight`[seq(10, 12)]
+
+# plot 10/29
+par(bg = 'white', fg = 'black')
+par(mfrow=c(1,1))
+plot(x = time1029,
+     y = cort1029,
+     type = "o",
+     main = "Cortisol levels vs. hour of the day",
+     font.main = "3",
+     col.main = "black",
+     xlim = c(6, 24),
+     ylim = c(0, 13),
+     col.lab = "black",
+     xlab = "hour of the day",
+     ylab = "cortisol (ng/ml)",
+     font.lab = "3",
+     col  = "red",
+     pch  = 21,
+     cex  = 1,)
+# hourly ticks
+axis(side=1, at=c(6:24))
+# cortisol ticks
+axis(side=2, at=c(0:13))
+
+# plot 10/30
+points(x = time1030,
+       y = cort1030,
+       col = "orange",
+       pch = 22)
+lines(x = time1030,
+      y = cort1030,
+      col = "orange",
+      lty = 1)
+# plot 11/05
+points(x = time1105,
+       y = cort1105,
+       col = "green3",
+       pch = 23)
+lines(x = time1105,
+      y = cort1105,
+      col = "green3",
+      lty = 1)
+# plot 11/06
+points(x = time1106,
+       y = cort1106,
+       col = "blue",
+       pch = 24)
+lines(x = time1106,
+      y = cort1106,
+      col = "blue",
+      lty = 1)
+
+# plot legend
+legend(18, 12, 
+       c("October 29", "October 30", "November 05", "November 06"),
+       col = c("red", "orange", "green3", "blue"),
+       lty = 1,
+       lwd = c(2.5,2.5,2.5,2.5),
+       text.font = 3)
+grid()
+
+bedtimes <- read_excel("C:/Users/baela/Desktop/BIO A 455/self sample data.xlsx", 
+                               sheet = "Sheet2", range = "A1:U45")
+
+bedpdt  <- bedtimes$realbedpdt
+bedpst  <- bedtimes$realbedpst
+wakepdt <- bedtimes$realwakepdt
+wakepst <- bedtimes$realwakepst
+
+bedpdt <- bedpdt[!is.na(bedpdt)]
+bedpst <- bedpst[!is.na(bedpst)]
+wakepdt <- wakepdt[!is.na(wakepdt)]
+wakepst <- wakepst[!is.na(wakepst)]
+
+boxplot(bedpdt, bedpst, wakepdt, wakepst,
+        horizontal = TRUE,
+        main = "Waking and Sleeping times, PDT vs. PST",
+        names = c("Bedtime PDT", "Bedtime PST", "Waking PDT", "Waking PST"),
+        col = c("red", "orange", "green3", "lightblue"),
+        xlab = "Hours past midnight",
+        ylim = c(6,28))
+axis(side=1, at=c(0:27))
+grid(NULL, NA)
+
+# hypothesis test, MWF vs. TTh
+MTWThF <- read_excel("C:/Users/baela/Desktop/BIO A 455/self sample data.xlsx", 
+                     sheet = "Sheet2", range = "Z1:AA21")
+
+MWF <- MTWThF$MWF
+TTh <- MTWThF$TTH
+
+MWF <- MWF[!is.na(MWF)]
+TTh <- TTh[!is.na(TTh)]
+
+t.test(MWF, TTh)
+
+boxplot(MWF, TTh,
+        horizontal = TRUE,
+        main = "Hours of sleep vs. Day of week",
+        names = c("MWF", "TTh"),
+        col = c("green3", "lightblue"),
+        xlab = "Hours Slept")
+axis(side=1, at=c(0:27))
+
+#sleeping hours import
+sleephour <- read_excel("C:/Users/baela/Desktop/BIO A 455/self sample data.xlsx", 
+                        sheet = "Sheet2", 
+                        range = "AD1:AE25")
+sleepPDT <- sleephour$sleepPDT
+sleepPST <- sleephour$sleepPST
+
+sleepPDT <- sleepPDT[!is.na(sleepPDT)]
+sleepPST <- sleepPST[!is.na(sleepPST)]
+
+#further hypothesis tests to confirm nulls
+t.test(bedpdt, bedpst)
+t.test(wakepdt, wakepst)
+t.test(sleepPDT, sleepPST)
